@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayank Music World</title>
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
+
+body{
+ background:#080b16;
+ color:white;
+ font-family:Arial,sans-serif;
+}
+
+header{
+ height:75px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 6%;
+ background:#101629;
+ border-bottom:1px solid #26324c;
+ position:sticky;
+ top:0;
+ z-index:10;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:bold;
+ color:#ffbd45;
+}
+
+.logo span{color:white}
+
+nav a{
+ color:white;
+ text-decoration:none;
+ margin:0 12px;
+}
+
+.hero{
+ min-height:410px;
+ padding:85px 8%;
+ background:
+ linear-gradient(90deg,#080b16 15%,#080b16bb),
+ url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1400')
+ center/cover;
+ display:flex;
+ align-items:center;
+}
+
+.hero h1{
+ font-size:clamp(35px,6vw,65px);
+ margin-bottom:15px;
+}
+
+.hero h1 span{color:#ffbd45}
+
+.hero p{
+ color:#ddd;
+ font-size:17px;
+ margin-bottom:25px;
+}
+
+.btn{
+ padding:13px 25px;
+ background:#ffbd45;
+ color:#101010;
+ border:none;
+ border-radius:30px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.container{
+ padding:35px 6%;
+}
+
+.heading{
+ font-size:27px;
+ margin-bottom:22px;
+}
+
+.heading span{color:#ffbd45}
+
+.search{
+ width:100%;
+ max-width:550px;
+ padding:15px;
+ border-radius:30px;
+ border:1px solid #39435b;
+ background:#151d31;
+ color:white;
+ margin-bottom:30px;
+ outline:none;
+}
+
+.artists{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+ gap:20px;
+}
+
+.artist{
+ background:#141d32;
+ border:1px solid #26334e;
+ padding:22px 10px;
+ border-radius:15px;
+ text-align:center;
+ cursor:pointer;
+ transition:.3s;
+}
+
+.artist:hover{
+ transform:translateY(-8px);
+ border-color:#ffbd45;
+ box-shadow:0 10px 30px #ffbd4520;
+}
+
+.artist .icon{
+ font-size:45px;
+ margin-bottom:10px;
+}
+
+.artist h3{font-size:16px}
+
+.songs{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:22px;
+}
+
+.card{
+ background:#141d32;
+ border-radius:15px;
+ overflow:hidden;
+ transition:.3s;
+ border:1px solid #27344d;
+}
+
+.card:hover{
+ transform:translateY(-7px);
+}
+
+.cover{
+ height:150px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ font-size:65px;
+ background:linear-gradient(135deg,#26385d,#101629);
+}
+
+.card-info{padding:17px}
+
+.card-info h3{margin-bottom:8px}
+
+.card-info p{
+ color:#aebbd1;
+ font-size:13px;
+ margin-bottom:15px;
+}
+
+.play{
+ background:#ffbd45;
+ color:#111;
+ border:0;
+ padding:10px 18px;
+ border-radius:20px;
+ cursor:pointer;
+ font-weight:bold;
+}
+
+.fav{
+ background:transparent;
+ border:1px solid #ffbd45;
+ color:#ffbd45;
+ padding:9px 12px;
+ border-radius:20px;
+ cursor:pointer;
+ margin-left:5px;
+}
+
+.player-box{
+ background:#141d32;
+ padding:22px;
+ border-radius:18px;
+ border:1px solid #36415a;
+}
+
+.player-box iframe{
+ width:100%;
+ height:350px;
+ border:0;
+ border-radius:12px;
+}
+
+.now{
+ margin-bottom:15px;
+ color:#ffbd45;
+ font-size:20px;
+}
+
+.player-note{
+ color:#b8c2d3;
+ font-size:13px;
+ margin-top:12px;
+}
+
+footer{
+ margin-top:40px;
+ padding:30px;
+ text-align:center;
+ background:#101629;
+ color:#aebbd1;
+}
+
+footer span{color:#ffbd45}
+
+@media(max-width:650px){
+ nav{display:none}
+ .hero{padding:65px 7%}
+ .player-box iframe{height:230px}
+ .container{padding:30px 5%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">🎵 MAYANK <span>MUSIC</span></div>
+
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#artists">Artists</a>
+  <a href="#songs">Songs</a>
+  <a href="#player">Music Player</a>
+ </nav>
+</header>
+
+<section class="hero" id="home">
+ <div>
+  <h1>Welcome To<br><span>Music World</span></h1>
+  <p>Old Is Gold ❤️ Enjoy Evergreen Hindi & Punjabi Music.</p>
+  <button class="btn" onclick="document.getElementById('songs').scrollIntoView({behavior:'smooth'})">
+   ▶ Explore Songs
+  </button>
+ </div>
+</section>
+
+<div class="container">
+
+<h2 class="heading">🔍 Search <span>Your Music</span></h2>
+
+<input class="search" id="search"
+placeholder="Search singer or song..."
+oninput="filterSongs()">
+
+<section id="artists">
+<h2 class="heading">⭐ Famous <span>Singers</span></h2>
+
+<div class="artists">
+
+<div class="artist" onclick="searchArtist('Kishore Kumar')">
+ <div class="icon">🎙️</div>
+ <h3>Kishore Kumar</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Sidhu Moose Wala')">
+ <div class="icon">🎤</div>
+ <h3>Sidhu Moose Wala</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Arijit Singh')">
+ <div class="icon">🎧</div>
+ <h3>Arijit Singh</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Mohammed Rafi')">
+ <div class="icon">🎼</div>
+ <h3>Mohammed Rafi</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Lata Mangeshkar')">
+ <div class="icon">🎵</div>
+ <h3>Lata Mangeshkar</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Mukesh')">
+ <div class="icon">🎹</div>
+ <h3>Mukesh</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Udit Narayan')">
+ <div class="icon">🎶</div>
+ <h3>Udit Narayan</h3>
+</div>
+
+<div class="artist" onclick="searchArtist('Asha Bhosle')">
+ <div class="icon">🎙️</div>
+ <h3>Asha Bhosle</h3>
+</div>
+
+</div>
+</section>
+
+<br><br>
+
+<section id="songs">
+
+<h2 class="heading">🔥 Popular <span>Songs</span></h2>
+
+<div class="songs" id="songList">
+
+<div class="card" data-name="mere mehboob qayamat hogi kishore kumar">
+ <div class="cover">👑</div>
+ <div class="card-info">
+  <h3>Mere Mehboob Qayamat Hogi</h3>
+  <p>Kishore Kumar • Old Classic</p>
+  <button class="play" onclick="playSong('odrhc32fiLo','Mere Mehboob Qayamat Hogi')">▶ Play</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="ek ladki bheegi bhagi si kishore kumar">
+ <div class="cover">🌧️</div>
+ <div class="card-info">
+  <h3>Ek Ladki Bheegi Bhagi Si</h3>
+  <p>Kishore Kumar • Evergreen</p>
+  <button class="play" onclick="playSong('CeO-2xTCDTU','Kishore Kumar Jukebox')">▶ Play</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="arijit singh tum hi ho">
+ <div class="cover">❤️</div>
+ <div class="card-info">
+  <h3>Tum Hi Ho</h3>
+  <p>Arijit Singh • Romantic</p>
+  <button class="play" onclick="searchVideo('Tum Hi Ho Arijit Singh official video')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="sidhu moose wala 295">
+ <div class="cover">🔥</div>
+ <div class="card-info">
+  <h3>295</h3>
+  <p>Sidhu Moose Wala • Punjabi</p>
+  <button class="play" onclick="searchVideo('295 Sidhu Moose Wala official video')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="mohammed rafi baharon phool barsao">
+ <div class="cover">🌹</div>
+ <div class="card-info">
+  <h3>Baharon Phool Barsao</h3>
+  <p>Mohammed Rafi • Classic</p>
+  <button class="play" onclick="searchVideo('Baharon Phool Barsao Mohammed Rafi')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="lata mangeshkar lag ja gale">
+ <div class="cover">🌙</div>
+ <div class="card-info">
+  <h3>Lag Ja Gale</h3>
+  <p>Lata Mangeshkar • Evergreen</p>
+  <button class="play" onclick="searchVideo('Lag Ja Gale Lata Mangeshkar official')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="mukesh kabhi kabhi mere dil mein">
+ <div class="cover">💖</div>
+ <div class="card-info">
+  <h3>Kabhi Kabhie Mere Dil Mein</h3>
+  <p>Mukesh • Old Gold</p>
+  <button class="play" onclick="searchVideo('Kabhi Kabhie Mere Dil Mein Mukesh')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+<div class="card" data-name="udit narayan papa kehte hain">
+ <div class="cover">🎸</div>
+ <div class="card-info">
+  <h3>Papa Kehte Hain</h3>
+  <p>Udit Narayan • 90s Hits</p>
+  <button class="play" onclick="searchVideo('Papa Kehte Hain Udit Narayan')">▶ Find Song</button>
+  <button class="fav" onclick="favorite(this)">♡</button>
+ </div>
+</div>
+
+</div>
+</section>
+
+<br><br>
+
+<section id="player">
+
+<h2 class="heading">🎧 Music <span>Player</span></h2>
+
+<div class="player-box">
+
+<div class="now" id="nowPlaying">
+ Now Playing: Mere Mehboob Qayamat Hogi
+</div>
+
+<iframe
+ id="videoPlayer"
+ src="https://www.youtube-nocookie.com/embed/odrhc32fiLo?rel=0"
+ title="Mayank Music Player"
+ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+ allowfullscreen>
+</iframe>
+
+<p class="player-note">
+Music video plays inside this website using the YouTube embedded player.
+Some videos may have embedding restrictions.
+</p>
+
+</div>
+</section>
+
+</div>
+
+<footer>
+ <h2>🎵 MAYANK MUSIC WORLD</h2>
+ <br>
+ <p>Made with ❤️ by <span>Mayank</span></p>
+ <p>Old Is Gold | Music Is Life</p>
+ <br>
+ © 2026 Mayank Music World
+</footer>
+
+<script>
+
+function playSong(id,name){
+
+ document.getElementById('videoPlayer').src=
+ 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+
+ document.getElementById('nowPlaying').innerText=
+ '▶ Now Playing: '+name;
+
+ document.getElementById('player').scrollIntoView({
+ behavior:'smooth'
+ });
+
+}
+
+function searchVideo(query){
+
+ document.getElementById('nowPlaying').innerText=
+ 'Searching: '+query;
+
+ // YouTube search results are not embedded automatically.
+ // Add a verified video ID to play this song inside the player.
+ alert('Is song ko website player mein chalane ke liye iska verified YouTube video ID add karna hoga.');
+
+}
+
+function searchArtist(name){
+
+ document.getElementById('search').value=name;
+ filterSongs();
+
+ document.getElementById('songs').scrollIntoView({
+ behavior:'smooth'
+ });
+
+}
+
+function filterSongs(){
+
+ let value=document.getElementById('search').value.toLowerCase();
+
+ document.querySelectorAll('.card').forEach(card=>{
+
+ let name=card.dataset.name;
+
+ card.style.display=name.includes(value)?'block':'none';
+
+ });
+
+}
+
+function favorite(button){
+
+ if(button.innerText==='♡'){
+ button.innerText='♥';
+ button.style.background='#ffbd45';
+ button.style.color='#111';
+ }else{
+ button.innerText='♡';
+ button.style.background='transparent';
+ button.style.color='#ffbd45';
+ }
+
+}
+
+</script>
+
+</body>
+</html>
